@@ -1,8 +1,8 @@
 // FONT FACES
-$font-family-serif: Merriweather, Georgia, Garamond, 'Times New Roman', serif;
-$font-family-sans-serif: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-serif: 'Playfair Display', Georgia, Garamond, 'Times New Roman', serif;
+$font-family-sans-serif: 'Josefin Slab', "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-$font-weight-normal: 300;
+$font-weight-normal: 400;
 $font-weight-bold: 700;
 // COLOURS
 
@@ -36,14 +36,6 @@ $site-secondary-lighter: #FFC985;
 $site-secondary-dark: #FF8E00;
 $site-secondary-lolight: $site-secondary-dark;
 $site-secondary-darker: #E78100;
-
-
-$cea: #2c5aa9;
-$gwwc: #6C0000;
-$eightythousandhours: #3FBDD1;
-$gpp: #7E95CC;
-$tlycs: #ED1A24;
-$ace: #349895;
 
 $grid-gutter-width: 30px;
 $content-padding: $grid-gutter-width * 2;

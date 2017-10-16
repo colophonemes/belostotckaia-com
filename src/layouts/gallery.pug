@@ -1,0 +1,29 @@
+extends ./layout
+
+mixin galleryItem(url)
+  .col-sm-6.col-md-4
+    .gallery-image-wrapper
+      .content
+        a(href=url).gallery-image-thumbnail-link
+          img(src=url).gallery-image-thumbnail-image  
+
+block header
+  .row
+    .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
+      include ./layout/header
+      +header({breadcrumbs:false})
+block content
+  #content
+    include ./components/breadcrumbs
+    .row
+      main.col-md-4
+        != contents
+      aside.col-md-8
+        .row
+          if galleryItems && galleryItems.length
+            each galleryItem in galleryItems
+              +galleryItem(contentfulImage(galleryItem.fields.image))
+          if images && images.length
+            each image in images
+              +galleryItem(contentfulImage(image))
+              

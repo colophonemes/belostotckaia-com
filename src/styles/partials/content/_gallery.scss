@@ -4,6 +4,7 @@
 
 .gallery-image-wrapper {
 	@include responsive-square(66.66%);
+	margin-bottom: $grid-gutter-width;
 }
 
 .gallery-item-caption {

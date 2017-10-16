@@ -33,7 +33,7 @@ $LAB
       timeout: 1000,
       classes: !global.wfInactive,
       google: {
-        families: ['Merriweather:300,300i,700,700i', 'Raleway:500,500i']
+        families: ['Josefin+Slab:400,400i,700,700i', 'Playfair+Display:400']
       }
     })
   })

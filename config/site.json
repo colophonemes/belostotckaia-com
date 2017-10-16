@@ -1,10 +1,10 @@
 {
-  "title" : "Contentful Metalsmith Boilerplate",
-  "domain" : "contentful-metalsmith-demo.netlify.com",
-  "protocol" : "http://",
-  "description": "Boilerplate for getting a Contentful/Metalsmith site up and running quickly",
-  "keywords": "contentful, metalsmith, netlify, boilerplate",
-  "logo": "https://images.contentful.com/mtlo55dqox3k/6cISVamQ7YIm0UoAywuMue/12121ba1e377f1807d516e25fea05798/initech.png",
+  "title" : "Daria Belostotckaia",
+  "domain" : "belostotckaia.com",
+  "protocol" : "https://",
+  "description": "Daria Belostotckaia, researcher and artist with a focus on ageing and gerontology",
+  "keywords": "belostotckaia, belostotskaya, research, art",
+  "logo": "https://images.contentful.com/fbf9zuv736me/3SqSUnMDtmiiOkoIKiCAg8/06ccf3ed130a20eb1486f753879f0bfd/daria-belostotckaia.png",
   "social": {
     "twitter": false
   }
