@@ -1,11 +1,10 @@
 extends ./layout
 
-mixin galleryItem(url)
+mixin galleryItem(imageUrl)
   .col-sm-6.col-md-4
-    .gallery-image-wrapper
+    .gallery-image-wrapper(style=`background-image:url(${imageUrl});`)
       .content
-        a(href=url).gallery-image-thumbnail-link
-          img(src=url).gallery-image-thumbnail-image  
+        a(href=imageUrl).gallery-image-thumbnail-link
 
 block header
   .row

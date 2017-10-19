@@ -214,7 +214,7 @@ function build (buildCount) {
       .use(lazysizes({
         widths: [100, 480, 768, 992, 1200, 1800],
         qualities: [50, 70, 70, 70, 70, 70],
-        backgrounds: ['.card-thumbnail'],
+        backgrounds: ['.card-thumbnail', '.gallery-image-wrapper'],
         ignore: '/images/**',
         ignoreSelectors: '.content-block-content',
         querystring: {
