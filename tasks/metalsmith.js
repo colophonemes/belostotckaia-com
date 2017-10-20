@@ -85,6 +85,7 @@ const pagination = require('metalsmith-pagination')
 const navigation = require('metalsmith-navigation')
 const createContentHierarchy = require(paths.lib('metalsmith/plugins/create-content-hierarchy.js'))
 const addChildrenToParents = require(paths.lib('metalsmith/plugins/add-children-to-parents.js'))
+const createGalleryItems = require(paths.lib('metalsmith/plugins/create-gallery-items'))
 const create404 = require(paths.lib('metalsmith/plugins/create-404.js'))
 const rebase = require(paths.lib('metalsmith/plugins/rebase'))
 const deleteFiles = require(paths.lib('metalsmith/plugins/delete-files.js'))
@@ -136,6 +137,8 @@ function build (buildCount) {
         filter: '**/*.contentful'
       }))
       .use(_message.info('Downloaded content from Contentful'))
+      .use(createGalleryItems())
+      .use(_message.info('Created gallery files'))
       .use(processContentfulMetadata())
       .use(createContentfulFileIdMap())
       .use(remapLayoutNames())
@@ -145,8 +148,8 @@ function build (buildCount) {
       .use(_message.info('Added files to collections'))
       .use(checkSlugs())
       .use(create404())
-      .use(createContentHierarchy)
-      .use(addChildrenToParents)
+      .use(createContentHierarchy())
+      .use(addChildrenToParents())
       .use(rebase([
         {
           pattern: 'pages/**/index.html',
@@ -159,6 +162,10 @@ function build (buildCount) {
         {
           pattern: 'posts/**/index.html',
           rebase: ['posts', 'blog']
+        },
+        {
+          pattern: 'gallery-images/**/index.html',
+          rebase: ['gallery-images', 'galleries']
         }
       ]))
       .use(_message.info('Moved files into place'))

@@ -1,0 +1,96 @@
+extends ./layout
+
+mixin galleryItem(galleryItemFile)
+  .col-xs-3.col-md-2.col-lg-1
+    .gallery-image-wrapper(style=`background-image:url(${contentfulImage(galleryItemFile.image)});`)
+      .content
+        a(href=galleryItemFile.path).gallery-image-thumbnail-link
+
+mixin galleryTitle()
+  h2.gallery-title!= title
+  if subtitle
+    h3.gallery-subtitle!= subtitle
+  
+
+block header
+  include ./layout/header
+  header#header
+    +headerLogo()
+    +headerText(gallery.title)
+
+block content
+  #content
+    div(class=contents?'gallery-title-xs':'')
+      +galleryTitle()
+    .row
+      //- gallery image
+      .gallery-item-content(class=contents?'col-md-8 col-md-push-4':'col-md-12')
+        .gallery-image-link(href=contentfulImage(image))
+          img.gallery-image(src=contentfulImage(image))
+        //- pagination
+        .gallery-image-pagination
+          - const paginationIndex = gallery.galleryItemFiles.findIndex(f => f.slug === slug)
+          - const paginationLastIndex = gallery.galleryItemFiles.length - 1
+          nav.pagination-wrapper(aria-label='Pagination')
+            ul.pagination
+              if paginationIndex > 0
+                li
+                  a(href=gallery.galleryItemFiles[0].path, aria-label='First')
+                    span(aria-hidden='true')
+                      i.fa.fa-angle-double-left
+
+                li
+                  a(href=gallery.galleryItemFiles[paginationIndex - 1].path, aria-label='Prev')
+                    span(aria-hidden='true')
+                      i.fa.fa-angle-left
+              li
+                a(href=gallery.path, aria-label=`Gallery: ${gallery.title}`)
+                  span(aria-hidden='true')
+                    i.fa.fa-home
+              if paginationIndex < paginationLastIndex
+                li
+                  a(href=gallery.galleryItemFiles[paginationIndex + 1].path, aria-label='Next')
+                    span(aria-hidden='true')
+                      i.fa.fa-angle-right
+                li
+                  a(href=gallery.galleryItemFiles[paginationLastIndex].path, aria-label='Last')
+                    span(aria-hidden='true')
+                      i.fa.fa-angle-double-right
+      //- gallery description
+      if contents
+        .col-md-4.col-md-pull-8
+          .gallery-title-md
+            +galleryTitle()
+          != contents
+
+    if gallery.galleryItemFiles && gallery.galleryItemFiles.length
+      .gallery-items
+        h4.gallery-items-gallery-title #[a(href=gallery.path)!= gallery.title]
+        .row
+          each galleryItemFile in gallery.galleryItemFiles
+            .gallery-item-wrapper(class=galleryItemFile.slug === slug?'active':'')
+              +galleryItem(galleryItemFile)
+block postContent
+  //- modal
+  .modal.fade(id='gallery-image-modal',tabindex="-1",role="dialog",aria-labelledby='gallery-image-modal-title' aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type="button",data-dismiss="modal")
+            i.fa.fa-times
+            span.sr-only Close
+          h4#gallery-image-modal-title.gallery-title!= title
+            if subtitle
+              |  
+              span.gallery-subtitle!= subtitle
+        .modal-body
+  script.
+    loadScript(function() {
+      $(document).ready(function(){
+        var galleryImageModal = $('#gallery-image-modal').modal({show: false})
+        var galleryImage = $('.gallery-image').clone().removeClass('gallery-image').appendTo(galleryImageModal.find('.modal-body'))
+        $('.gallery-image-link').click(function(event) {
+          galleryImageModal.modal('show')
+        })
+      })
+    })

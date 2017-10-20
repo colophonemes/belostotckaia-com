@@ -1,28 +1,22 @@
 extends ./layout
 
-mixin galleryItem(imageUrl)
+mixin galleryItem(galleryItemFile)
   .col-sm-6.col-md-4
-    .gallery-image-wrapper(style=`background-image:url(${imageUrl});`)
+    .gallery-image-wrapper(style=`background-image:url(${contentfulImage(galleryItemFile.image)});`)
       .content
-        a(href=imageUrl).gallery-image-thumbnail-link
+        a(href=galleryItemFile.path).gallery-image-thumbnail-link
 
 block header
-  .row
-    .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
-      include ./layout/header
-      +header({breadcrumbs:false})
+  include ./layout/header
+  +header({breadcrumbs:false})
 block content
   #content
-    include ./components/breadcrumbs
     .row
-      main.col-md-4
-        != contents
-      aside.col-md-8
+      div(class=contents?'col-md-8 col-md-push-4':'col-md-12')
         .row
-          if galleryItems && galleryItems.length
-            each galleryItem in galleryItems
-              +galleryItem(contentfulImage(galleryItem.fields.image))
-          if images && images.length
-            each image in images
-              +galleryItem(contentfulImage(image))
-              
+          if galleryItemFiles && galleryItemFiles.length
+            each galleryItemFile in galleryItemFiles
+              +galleryItem(galleryItemFile)
+      if contents
+        .col-md-4.col-md-pull-8
+          != contents
