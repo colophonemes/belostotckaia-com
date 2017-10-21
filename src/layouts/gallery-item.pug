@@ -61,7 +61,11 @@ block content
         .col-md-4.col-md-pull-8
           .gallery-title-md
             +galleryTitle()
-          != contents
+          .gallery-item-description-wrapper
+            .gallery-item-description-content
+              != contents
+            .gallery-item-description-gradient
+
 
     if gallery.galleryItemFiles && gallery.galleryItemFiles.length
       .gallery-items
@@ -87,8 +91,16 @@ block postContent
   script.
     loadScript(function() {
       $(document).ready(function(){
+        var galleryDescription = $('.gallery-item-description-content')
+        var galleryImage = $('.gallery-image')
+        // resize text content to image height
+        function resizeDescriptionContents () {
+          galleryDescription.css({maxHeight: galleryImage.outerHeight()})
+        }
+        resizeDescriptionContents()
+        // modal setup
         var galleryImageModal = $('#gallery-image-modal').modal({show: false})
-        var galleryImage = $('.gallery-image').clone().removeClass('gallery-image').appendTo(galleryImageModal.find('.modal-body'))
+        galleryImage.clone().removeClass('gallery-image').appendTo(galleryImageModal.find('.modal-body'))
         $('.gallery-image-link').click(function(event) {
           galleryImageModal.modal('show')
         })

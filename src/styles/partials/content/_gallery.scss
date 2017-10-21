@@ -61,6 +61,31 @@
 	}
 }
 
+.gallery-item-description-wrapper {
+	position: relative;
+}
+$gradient-height: 50px;
+.gallery-item-description-content {
+	@media(min-width: $screen-md) {
+		max-height: 500px;
+		overflow-x: scroll;
+		padding-bottom: $gradient-height;
+	}
+}
+
+.gallery-item-description-gradient {
+	display: none;
+	@media(min-width: $screen-md) {
+		display: block;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: $gradient-height;
+		width: 100%;
+		background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 86%,rgba(255,255,255,1) 100%);
+	}
+}
+
 .gallery-image-wrapper {
 	background-repeat: no-repeat;
 	background-size: cover;
