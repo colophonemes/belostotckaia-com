@@ -66,6 +66,9 @@
 }
 $gradient-height: 50px;
 .gallery-item-description-content {
+	@media(max-width: $screen-sm-max) {
+		max-height: none !important;
+	}
 	@media(min-width: $screen-md) {
 		max-height: 500px;
 		overflow-x: scroll;
