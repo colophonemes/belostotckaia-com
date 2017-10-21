@@ -64,7 +64,7 @@
 .gallery-item-description-wrapper {
 	position: relative;
 }
-$gradient-height: 50px;
+$gradient-height: 100px;
 .gallery-item-description-content {
 	@media(max-width: $screen-sm-max) {
 		max-height: none !important;

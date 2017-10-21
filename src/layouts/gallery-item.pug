@@ -97,6 +97,11 @@ block postContent
         function resizeDescriptionContents () {
           galleryDescription.css({maxHeight: galleryImage.outerHeight()})
         }
+        var resizeDebounce
+        $(window).resize(function () {
+          clearTimeout(resizeDebounce)
+          resizeDebounce = setTimeout(resizeDescriptionContents, 200)
+        })
         resizeDescriptionContents()
         // modal setup
         var galleryImageModal = $('#gallery-image-modal').modal({show: false})
